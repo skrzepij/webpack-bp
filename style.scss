@@ -1,3 +1,15 @@
+// $bootstrap-sass-asset-helper: true;
+// @import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
 body {
   background-color: pink;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+
+  input {
+    appearance: none;
+  }
 }
