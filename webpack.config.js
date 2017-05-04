@@ -1,3 +1,4 @@
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var webpack = require('webpack');
 var path = require('path');
@@ -6,11 +7,11 @@ var root = __dirname;
 module.exports = {
   context: root,
   entry: {
-    bundle: "./entry.js"
+    app: "./src/js/entry.js"
   },
   output: {
-      path: path.join(root, 'build'),
-      filename: "[name].js"
+      path: path.join(root, 'dist'),
+      filename: "[name].bundle.js"
   },
   module: {
       rules: [{
@@ -35,25 +36,8 @@ module.exports = {
           //resolve-url-loader may be chained before sass-loader if necessary
           fallback: "style-loader",
         })
-      }//,
-    //   {
-    //   test: /\.css$/,
-    //   exclude: /node_modules/,
-    //   use: [
-    //       {
-    //           loader: 'style-loader',
-    //       },
-    //       {
-    //           loader: 'css-loader',
-    //           options: {
-    //               importLoaders: 1,
-    //           }
-    //       },
-    //       {
-    //           loader: 'postcss-loader'
-    //       }
-    //   ]
-    // }
+      }
+
     ]
   },
   plugins: [
@@ -61,6 +45,38 @@ module.exports = {
       filename: "styles.css"
       //    filename: "[name].[contenthash].css"
       //     disable: process.env.NODE_ENV === "development"
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Webpack Sandbox v1',
+      minify: {
+        collapseWhitespace: true
+      },
+      hash: true,
+      template: './src/index.ejs'
     })
   ]
 };
+
+
+
+
+
+/////////////////////////CSS
+//   {
+//   test: /\.css$/,
+//   exclude: /node_modules/,
+//   use: [
+//       {
+//           loader: 'style-loader',
+//       },
+//       {
+//           loader: 'css-loader',
+//           options: {
+//               importLoaders: 1,
+//           }
+//       },
+//       {
+//           loader: 'postcss-loader'
+//       }
+//   ]
+// }
