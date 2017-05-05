@@ -7,7 +7,8 @@ var root = __dirname;
 module.exports = {
   context: root,
   entry: {
-    app: "./src/js/entry.js"
+    app: "./src/js/entry.js",
+    contact: "./src/js/contact.js"
   },
   output: {
     path: path.join(root, "dist"),
@@ -54,21 +55,34 @@ module.exports = {
     //open: true            only in local env (with browser)
   },
   plugins: [
+    ///HTML
+    new HtmlWebpackPlugin({
+      title: 'Webpack Sandbox v1',
+      // minify: {
+      //   collapseWhitespace: true
+      // },
+      hash: true,
+      excludeChunks: ['contact'],
+      template: './src/index.html',
+      favicon: './src/favicon.png'
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Webpack Contact',
+      hash: true,
+      chunks: ['contact'],
+      filename: 'contact.html',
+      template: './src/contact.html',
+      favicon: './src/favicon.png'
+    }),
+
+
+    //CSS
     new ExtractTextPlugin({
       filename: "[name].css",
       disable: false,
       allChunks: true
       //    filename: "[name].[contenthash].css"
       //     disable: process.env.NODE_ENV === "development"
-    }),
-    new HtmlWebpackPlugin({
-      title: 'Webpack Sandbox v1',
-      minify: {
-        collapseWhitespace: true
-      },
-      hash: true,
-      template: './src/index.html',
-      favicon: './src/favicon.png'
     })
   ]
 };
