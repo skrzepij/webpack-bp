@@ -10,39 +10,49 @@ module.exports = {
     app: "./src/js/entry.js"
   },
   output: {
-      path: path.join(root, 'dist'),
+      path: path.join(root, "dist"),
       filename: "[name].bundle.js"
   },
   module: {
       rules: [{
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
+          //resolve-url-loader may be chained before sass-loader if necessary
+          fallback: "style-loader",       // put inline CSS into html file
           use: [{
-            loader: 'css-loader', // translates CSS into CommonJS
+            loader: 'css-loader',         // translates CSS into CommonJS
             options: {
-              minimize: true,
-              importLoaders: 1,
+              // minimize: true,          run with -p to minify;
+              importLoaders: 1
             }
           },
           {
-            loader: 'postcss-loader' // postcss.config.js
+            loader: 'postcss-loader'      // manipulate CSS (e.g. autoprefixer) postcss.config.js
           },
           {
-            loader: 'sass-loader', // compiles Sass to CSS
+            loader: 'sass-loader',        // compiles Sass to CSS
             options: {
               // data: "$env: " + process.env.NODE_ENV + ";"
             }
           }],
-          //resolve-url-loader may be chained before sass-loader if necessary
-          fallback: "style-loader",
+          publicPath: "/dist"
         })
       }
 
     ]
   },
+  devServer: {
+    contentBase: path.join(root, "dist"),
+    compress: true,
+    port: 9000,
+    stats: "errors-only",
+    //open: true            only in local env (with browser)
+  },
   plugins: [
     new ExtractTextPlugin({
-      filename: "styles.css"
+      filename: "[name].css",
+      disable: false,
+      allChunks: true
       //    filename: "[name].[contenthash].css"
       //     disable: process.env.NODE_ENV === "development"
     }),

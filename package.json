@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack -d --watch",
+    "server": "webpack-dev-server",
     "prod": "webpack -p"
   },
   "repository": {
@@ -27,7 +28,8 @@
     "pug-loader": "^2.3.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.13.2",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.7"
