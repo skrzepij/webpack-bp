@@ -10,11 +10,12 @@ module.exports = {
     app: "./src/js/entry.js"
   },
   output: {
-      path: path.join(root, "dist"),
-      filename: "[name].bundle.js"
+    path: path.join(root, "dist"),
+    filename: "[name].bundle.js"
   },
   module: {
-      rules: [{
+    rules: [
+      {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           //resolve-url-loader may be chained before sass-loader if necessary
@@ -37,8 +38,12 @@ module.exports = {
           }],
           publicPath: "/dist"
         })
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
       }
-
     ]
   },
   devServer: {
@@ -62,7 +67,7 @@ module.exports = {
         collapseWhitespace: true
       },
       hash: true,
-      template: './src/index.ejs',
+      template: './src/index.html',
       favicon: './src/favicon.png'
     })
   ]
