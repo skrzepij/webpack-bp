@@ -52,7 +52,8 @@ module.exports = {
         collapseWhitespace: true
       },
       hash: true,
-      template: './src/index.ejs'
+      template: './src/index.ejs',
+      favicon: './src/favicon.png'
     })
   ]
 };
