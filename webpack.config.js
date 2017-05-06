@@ -44,6 +44,15 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: 'babel-loader'
+      },
+      {
+        test: /\.pug$/,
+        use: [{
+          loader: 'pug-loader',
+          options: {
+            pretty: true
+          }
+        }]
       }
     ]
   },
@@ -63,7 +72,7 @@ module.exports = {
       // },
       hash: true,
       excludeChunks: ['contact'],
-      template: './src/index.html',
+      template: './src/index.pug',
       favicon: './src/favicon.png'
     }),
     new HtmlWebpackPlugin({

@@ -1,8 +1,9 @@
-// $bootstrap-sass-asset-helper: true;
-// @import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// @import "vendors/bootstrap";
+@import "libs/_bootstrap.scss";
 
 body {
   background-color: #4D2;
+  color: blue;
 }
 
 .container {
