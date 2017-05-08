@@ -50,7 +50,7 @@ module.exports = {
         use: [{
           loader: 'pug-loader',
           options: {
-            pretty: true
+            
           }
         }]
       }

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack -d --watch",
     "serv": "webpack-dev-server",
-    "prod": "npm run clean && webpack -p",
+    "prod": "npm run clean && webpack -p --config webpack.production.config.js",
     "clean": "rimraf ./dist/*"
   },
   "repository": {
@@ -27,7 +27,7 @@
     "node-sass": "^4.5.0",
     "postcss-loader": "^1.3.3",
     "pug": "^2.0.0-rc.1",
-    "pug-loader": "git+https://github.com/pugjs/pug-loader.git",
+    "pug-loader": "https://github.com/pugjs/pug-loader",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.13.2",
     "webpack": "^2.2.1",

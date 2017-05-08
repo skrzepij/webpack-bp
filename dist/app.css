@@ -5749,8 +5749,7 @@ button.close {
     display: none !important; } }
 
 body {
-  background-color: #4D2;
-  color: blue; }
+  background-color: #4D2; }
 
 .container {
   display: -webkit-box;
