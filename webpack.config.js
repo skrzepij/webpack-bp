@@ -76,6 +76,17 @@ module.exports = {
       favicon: './src/favicon.png'
     }),
     new HtmlWebpackPlugin({
+      title: 'Webpack Sandbox v1',
+      // minify: {
+      //   collapseWhitespace: true
+      // },
+      hash: true,
+      excludeChunks: ['contact'],
+      template: './src/page1.pug',
+      filename: 'page1.html',
+      favicon: './src/favicon.png'
+    }),
+    new HtmlWebpackPlugin({
       title: 'Webpack Contact',
       hash: true,
       chunks: ['contact'],
