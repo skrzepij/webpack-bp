@@ -1,24 +1,7 @@
 # README #
 
 
-
-### Branches ###
-
-* Master - Basic config 
-
-PUG + SASS + JS
-
-(issue with importing sass files)
-
-
-
-* Typescript - TS config
-
-PUG + SASS + TypeScript
-
-
-
-### How to run ###
+## How to run ##
 
 1. Clone repo
 2. Run these commends in terminal:
@@ -36,3 +19,20 @@ npm run prod
 ```
 
 As mentioned before, all these scripts are available in the `package.json` file
+
+
+
+
+### Branches ###
+
+* Master - Basic config 
+
+PUG + SASS + JS
+
+(issue with importing sass files)
+
+
+
+* Typescript - TS config
+
+PUG + SASS + TypeScript
