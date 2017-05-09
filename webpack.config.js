@@ -60,7 +60,9 @@ module.exports = {
     contentBase: path.join(root, "dist"),
     compress: true,
     port: 9000,
+    host: '0.0.0.0',
     stats: "errors-only",
+    disableHostCheck: true
     //open: true            only in local env (with browser)
   },
   plugins: [

@@ -1,4 +1,6 @@
+const libs = require("../scss/libs.scss");
 const css = require("../scss/style.scss");
+
 
 var content = require("./content.js");
 content();
