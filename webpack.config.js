@@ -67,33 +67,27 @@ module.exports = {
     ///HTML
     new HtmlWebpackPlugin({
       title: 'Webpack Sandbox v1',
-      // minify: {
-      //   collapseWhitespace: true
-      // },
       hash: true,
       excludeChunks: ['contact'],
-      template: './src/index.pug',
+      template: './src/views/templates/index.pug',
       favicon: './src/favicon.png'
     }),
     new HtmlWebpackPlugin({
       title: 'Webpack Sandbox v1',
-      // minify: {
-      //   collapseWhitespace: true
-      // },
       hash: true,
       excludeChunks: ['contact'],
-      template: './src/page1.pug',
+      template: './src/views/templates/page1.pug',
       filename: 'page1.html',
       favicon: './src/favicon.png'
     }),
-    new HtmlWebpackPlugin({
-      title: 'Webpack Contact',
-      hash: true,
-      chunks: ['contact'],
-      filename: 'contact.html',
-      template: './src/contact.html',
-      favicon: './src/favicon.png'
-    }),
+    // new HtmlWebpackPlugin({
+    //   title: 'Webpack Contact',
+    //   hash: true,
+    //   chunks: ['contact'],
+    //   filename: 'contact.html',
+    //   template: './src/contact.html',
+    //   favicon: './src/favicon.png'
+    // }),
 
 
     //CSS

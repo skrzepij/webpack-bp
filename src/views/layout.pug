@@ -1,3 +1,5 @@
+include ./mixins/meta
+
 doctype html
 html(lang="pl")
   head
@@ -10,10 +12,6 @@ html(lang="pl")
       - var title = ""
       - var pageTitle = ""
       - var pageDesc = ""
-
-    //- mixin for standard meta code
-    mixin meta(name, content)
-      meta(name=name content=content)
         
     //-- PAGE META
     //- defined in webpack.config.js

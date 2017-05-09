@@ -1,14 +1,14 @@
 //- Page index.pug
-extends layout.pug
+extends ../layout
 
 block vars
   - var title = "Strona główna"
-  - var pageTitle = "Page1"
+  - var pageTitle = "Page 1"
   - var pageDesc = "Opis strony głównej"
 
 block append header
   -locals.path= pageTitle;
-  include includes/header
+  include ../includes/header
 
 
 
@@ -26,11 +26,10 @@ block append content
       
   #container.col
     //- include values from external JSON
-    - var values = (require('./data/example.json'));
+    - var values = (require('../../data/example.json'));
     ul
       each val, key in values
         li= values[key].name
-        
     //--- END of including data;
     
     p.
