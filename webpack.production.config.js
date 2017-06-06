@@ -50,7 +50,7 @@ module.exports = {
         use: [{
           loader: 'pug-loader',
           options: {
-            
+
           }
         }]
       }
@@ -60,7 +60,9 @@ module.exports = {
     contentBase: path.join(root, "dist"),
     compress: true,
     port: 9000,
+    host: '0.0.0.0',
     stats: "errors-only",
+    disableHostCheck: true
     //open: true            only in local env (with browser)
   },
   plugins: [
@@ -72,17 +74,25 @@ module.exports = {
       // },
       hash: true,
       excludeChunks: ['contact'],
-      template: './src/index.pug',
+      template: './src/views/templates/index.pug',
       favicon: './src/favicon.png'
     }),
     new HtmlWebpackPlugin({
-      title: 'Webpack Contact',
+      title: 'Webpack Page1',
       hash: true,
-      chunks: ['contact'],
-      filename: 'contact.html',
-      template: './src/contact.html',
+      excludeChunks: ['contact'],
+      template: './src/views/templates/page1.pug',
+      filename: 'page1.html',
       favicon: './src/favicon.png'
     }),
+    // new HtmlWebpackPlugin({
+    //   title: 'Webpack Contact',
+    //   hash: true,
+    //   chunks: ['contact'],
+    //   filename: 'contact.html',
+    //   template: './src/contact.html',
+    //   favicon: './src/favicon.png'
+    // }),
 
 
     //CSS

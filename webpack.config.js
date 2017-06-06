@@ -16,6 +16,9 @@ module.exports = {
   },
   module: {
     rules: [
+      /***************
+      ###   SASS / CSS LOADERS
+      ***********/
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
@@ -40,11 +43,19 @@ module.exports = {
           publicPath: "/dist"
         })
       },
+
+      /***************
+      ###   JS LOADER
+      ***********/
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: 'babel-loader'
       },
+
+      /***************
+      ###   PUG LOADER
+      ***********/
       {
         test: /\.pug$/,
         use: [{
@@ -53,6 +64,34 @@ module.exports = {
             pretty: true
           }
         }]
+      },
+
+      /***************
+      ###   FONTS AND IMAGES LOADER
+      ***********/
+      {
+        test: /\.(png|jpe?g|gif|ico)$/,
+        loader: 'file-loader?name=/img/[name].[hash].[ext]'
+      },
+      {
+        test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&name=/fonts/[name].[ext]&mimetype=application/font-woff'
+      },
+      {
+        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&name=/fonts/[name].[ext]&mimetype=application/font-woff'
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&name=/fonts/[name].[ext]&mimetype=application/octet-stream'
+      },
+      {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader?name=/fonts/[name].[hash].[ext]'
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&name=/fonts/[name].[ext]&mimetype=image/svg+xml'
       }
     ]
   },
@@ -75,7 +114,7 @@ module.exports = {
       favicon: './src/favicon.png'
     }),
     new HtmlWebpackPlugin({
-      title: 'Webpack Sandbox v1',
+      title: 'Webpack Page1',
       hash: true,
       excludeChunks: ['contact'],
       template: './src/views/templates/page1.pug',

@@ -7,14 +7,14 @@ block vars
   - var pageDesc = "Opis strony głównej"
 
 block append header
-  -locals.path= pageTitle;
+  - locals.path= pageTitle;
   include ../includes/header
 
 
 
 block append content
   h1(class="header-h1" data-attr="tested data").
-    Pug - node template engine
+    Pug - node template engine 
   .cointainer
     .row
       - var cols = 0;
