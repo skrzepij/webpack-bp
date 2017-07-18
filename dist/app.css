@@ -5756,8 +5756,8 @@ button.close {
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url(/dist/fonts/fontawesome-webfont.674f50d287a8c48dc19ba404d20fe713.eot);
-  src: url(/dist/fonts/fontawesome-webfont.674f50d287a8c48dc19ba404d20fe713.eot?#iefix&v=4.7.0) format("embedded-opentype"), url(/dist/fonts/fontawesome-webfont.woff2) format("woff2"), url(/dist/fonts/fontawesome-webfont.woff) format("woff"), url(/dist/fonts/fontawesome-webfont.ttf) format("truetype"), url(/dist/fonts/fontawesome-webfont.svg#fontawesomeregular) format("svg");
+  src: url(/dist/fonts/fontawesome-webfont.eot);
+  src: url(/dist/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0) format("embedded-opentype"), url(/dist/fonts/fontawesome-webfont.woff2) format("woff2"), url(/dist/fonts/fontawesome-webfont.woff) format("woff"), url(/dist/fonts/fontawesome-webfont.ttf) format("truetype"), url(/dist/fonts/fontawesome-webfont.svg#fontawesomeregular) format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -8072,6 +8072,90 @@ button.close {
   margin: 0;
   overflow: visible;
   clip: auto; }
+/* FONTS */
+@font-face {
+  font-family: "HelveticaNeue-Lt";
+  src: url("/src/fonts/HelveticaNeue/Lt/HelveticaNeue-Lt.eot");
+  src: url("/src/fonts/HelveticaNeue/Lt/HelveticaNeue-Lt.eot?#iefix") format("embedded-opentype"), url("/src/fonts/HelveticaNeue/Lt/HelveticaNeue-Lt.woff") format("woff"), url("/src/fonts/HelveticaNeue/Lt/HelveticaNeue-Lt.ttf") format("truetype"), url("/src/fonts/HelveticaNeue/Lt/HelveticaNeue-Lt.svg#HelveticaNeue") format("svg"); }
+
+@font-face {
+  font-family: "HelveticaNeue-Roman";
+  src: url("/src/fonts/HelveticaNeue/Roman/HelveticaNeue-Roman.eot");
+  src: url("/src/fonts/HelveticaNeue/Roman/HelveticaNeue-Roman.eot?#iefix") format("embedded-opentype"), url("/src/fonts/HelveticaNeue/Roman/HelveticaNeue-Roman.woff") format("woff"), url("/src/fonts/HelveticaNeue/Roman/HelveticaNeue-Roman.ttf") format("truetype"), url("/src/fonts/HelveticaNeue/Roman/HelveticaNeue-Roman.svg#HelveticaNeue") format("svg"); }
+
+@font-face {
+  font-family: "HelveticaNeue-Bd";
+  src: url("/src/fonts/HelveticaNeue/Bd/HelveticaNeue-Bd.eot");
+  src: url("/src/fonts/HelveticaNeue/Bd/HelveticaNeue-Bd.eot?#iefix") format("embedded-opentype"), url("/src/fonts/HelveticaNeue/Bd/HelveticaNeue-Bd.woff") format("woff"), url("/src/fonts/HelveticaNeue/Bd/HelveticaNeue-Bd.ttf") format("truetype"), url("/src/fonts/HelveticaNeue/Bd/HelveticaNeue-Bd.svg#HelveticaNeue") format("svg"); }
+
+@font-face {
+  font-family: "GothamCondensed-Ultra";
+  src: url("/src/fonts/GothamCondensed/Ultra/GothamCondensed-Ultra.eot");
+  src: url("/src/fonts/GothamCondensed/Ultra/GothamCondensed-Ultra.eot?#iefix") format("embedded-opentype"), url("/src/fonts/GothamCondensed/Ultra/GothamCondensed-Ultra.woff") format("woff"), url("/src/fonts/GothamCondensed/Ultra/GothamCondensed-Ultra.ttf") format("truetype"), url("/src/fonts/GothamCondensed/Ultra/GothamCondensed-Ultra.svg#GothamCondensed") format("svg"); }
+
+@font-face {
+  font-family: "GothamCondensed-Black";
+  src: url("/src/fonts/GothamCondensed/Black/GothamCondensed-Black.eot");
+  src: url("/src/fonts/GothamCondensed/Black/GothamCondensed-Black.eot?#iefix") format("embedded-opentype"), url("/src/fonts/GothamCondensed/Black/GothamCondensed-Black.woff") format("woff"), url("/src/fonts/GothamCondensed/Black/GothamCondensed-Black.ttf") format("truetype"), url("/src/fonts/GothamCondensed/Black/GothamCondensed-Black.svg#GothamCondensed") format("svg"); }
+
+@font-face {
+  font-family: "GothamCondensed-Bold";
+  src: url("/src/fonts/GothamCondensed/Bold/GothamCondensed-Bold.eot");
+  src: url("/src/fonts/GothamCondensed/Bold/GothamCondensed-Bold.eot?#iefix") format("embedded-opentype"), url("/src/fonts/GothamCondensed/Bold/GothamCondensed-Bold.woff") format("woff"), url("/src/fonts/GothamCondensed/Bold/GothamCondensed-Bold.ttf") format("truetype"), url("/src/fonts/GothamCondensed/Bold/GothamCondensed-Bold.svg#GothamCondensed") format("svg"); }
+
+@font-face {
+  font-family: "GothamCondensed-Medium";
+  src: url("/src/fonts/GothamCondensed/Medium/GothamCondensed-Medium.eot");
+  src: url("/src/fonts/GothamCondensed/Medium/GothamCondensed-Medium.eot?#iefix") format("embedded-opentype"), url("/src/fonts/GothamCondensed/Medium/GothamCondensed-Medium.woff") format("woff"), url("/src/fonts/GothamCondensed/Medium/GothamCondensed-Medium.ttf") format("truetype"), url("/src/fonts/GothamCondensed/Medium/GothamCondensed-Medium.svg#GothamCondensed") format("svg"); }
+
+@font-face {
+  font-family: "GothamCondensed-Book";
+  src: url("/src/fonts/GothamCondensed/Book/GothamCondensed-Book.eot");
+  src: url("/src/fonts/GothamCondensed/Book/GothamCondensed-Book.eot?#iefix") format("embedded-opentype"), url("/src/fonts/GothamCondensed/Book/GothamCondensed-Book.woff") format("woff"), url("/src/fonts/GothamCondensed/Book/GothamCondensed-Book.ttf") format("truetype"), url("/src/fonts/GothamCondensed/Book/GothamCondensed-Book.svg#GothamCondensed") format("svg"); }
+
+@font-face {
+  font-family: "GothamCondensed-Light";
+  src: url("/src/fonts/GothamCondensed/Light/GothamCondensed-Light.eot");
+  src: url("/src/fonts/GothamCondensed/Light/GothamCondensed-Light.eot?#iefix") format("embedded-opentype"), url("/src/fonts/GothamCondensed/Light/GothamCondensed-Light.woff") format("woff"), url("/src/fonts/GothamCondensed/Light/GothamCondensed-Light.ttf") format("truetype"), url("/src/fonts/GothamCondensed/Light/GothamCondensed-Light.svg#GothamCondensed") format("svg"); }
+
+@font-face {
+  font-family: "GothamCondensed-Thin";
+  src: url("/src/fonts/GothamCondensed/Thin/GothamCondensed-Thin.eot");
+  src: url("/src/fonts/GothamCondensed/Thin/GothamCondensed-Thin.eot?#iefix") format("embedded-opentype"), url("/src/fonts/GothamCondensed/Thin/GothamCondensed-Thin.woff") format("woff"), url("/src/fonts/GothamCondensed/Thin/GothamCondensed-Thin.ttf") format("truetype"), url("/src/fonts/GothamCondensed/Thin/GothamCondensed-Thin.svg#GothamCondensed") format("svg"); }
+
+/*******
+##### VARS
+**************/
+/*******
+##### MIXINS
+**************/
+/*******
+##### BASE
+**************/
+html {
+  font-size: 14px; }
+  @media screen and (min-width: 540px) {
+    html {
+      font-size: 15px; } }
+  @media screen and (min-width: 991px) {
+    html {
+      font-size: 17px; } }
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #000; }
+
+h1, h2, h3, h4, h5 {
+  font-weight: 700; }
+
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit; }
+
 body {
   background-color: #4D2; }
 
