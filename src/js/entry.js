@@ -6,6 +6,8 @@ var content = require("./content.js");
 content();
 
 
+
+//TURN OFF REACT FOR NOW
 // import React from 'react';
 // import ReactDOM from 'react-dom';
 

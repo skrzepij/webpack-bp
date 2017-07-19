@@ -4,7 +4,29 @@ var webpack = require('webpack');
 var path = require('path');
 var root = __dirname;
 
-var isProd = process.env.NODE_ENV === 'production'; //true or false
+var isProd = process.argv.indexOf('-p') !== -1; //true or false
+
+var cssDev = ['style-loader', 'css-loader', 'sass-loader'];
+var cssProd = ExtractTextPlugin.extract({
+  fallback: "style-loader",       // put inline CSS into html file
+  use: [{
+    loader: 'css-loader',         // translates CSS into CommonJS
+    options: {
+      importLoaders: 1
+      // minimize: true,          // just run with -p to minify;
+    }
+  },
+  {
+    loader: 'postcss-loader'      // manipulate CSS (e.g. autoprefixer) postcss.config.js
+  },
+  {
+    loader: 'sass-loader'        // compiles Sass to CSS
+  }],
+  publicPath: "/dist"
+});
+var cssConfig = isProd ? cssProd : cssDev;
+
+
 
 module.exports = {
   context: root,
@@ -14,7 +36,9 @@ module.exports = {
   },
   output: {
     path: path.join(root, "dist"),
-    filename: "[name].bundle.js"
+    filename: "[name].bundle.js",
+    hotUpdateChunkFilename: 'hot/hot-update.js',
+    hotUpdateMainFilename: 'hot/hot-update.json'
   },
   module: {
     rules: [
@@ -23,27 +47,7 @@ module.exports = {
       ***********/
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          //resolve-url-loader may be chained before sass-loader if necessary
-          fallback: "style-loader",       // put inline CSS into html file
-          use: [{
-            loader: 'css-loader',         // translates CSS into CommonJS
-            options: {
-              // minimize: true,          run with -p to minify;
-              importLoaders: 1
-            }
-          },
-          {
-            loader: 'postcss-loader'      // manipulate CSS (e.g. autoprefixer) postcss.config.js
-          },
-          {
-            loader: 'sass-loader',        // compiles Sass to CSS
-            options: {
-              // data: "$env: " + process.env.NODE_ENV + ";"
-            }
-          }],
-          publicPath: "/dist"
-        })
+        use: cssConfig
       },
 
       /***************
@@ -75,7 +79,7 @@ module.exports = {
         test: /\.(png|jpe?g|gif|ico)$/,
         loader: 'file-loader',
         options: {
-          name: [name].[hash].[ext],
+          name: '[name].[hash].[ext]',
           publicPath: './',
           outputPath: 'img/'
         }
@@ -131,16 +135,18 @@ module.exports = {
     //CSS
     new ExtractTextPlugin({
       filename: "[name].css",
-      disable: false,
+      disable: !isProd,                  //run only on production
       allChunks: true
       //    filename: "[name].[contenthash].css"
       //     disable: process.env.NODE_ENV === "development"
-    })
+    }),
 
     //HOT MODULE REPLACEMENT
     //enable HMR globally
-    // new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin({
+      //options
+    }),
     //print more readable module name in the browser console on HMR update
-    // new webpack.NameModulesPlugin()
+    new webpack.NamedModulesPlugin()
   ]
 };
