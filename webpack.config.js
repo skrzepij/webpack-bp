@@ -4,6 +4,8 @@ var webpack = require('webpack');
 var path = require('path');
 var root = __dirname;
 
+var isProd = process.env.NODE_ENV === 'production'; //true or false
+
 module.exports = {
   context: root,
   entry: {
@@ -71,17 +73,28 @@ module.exports = {
       ***********/
       {
         test: /\.(png|jpe?g|gif|ico)$/,
-        loader: 'file-loader?name=/img/[name].[hash].[ext]'
+        loader: 'file-loader',
+        options: {
+          name: [name].[hash].[ext],
+          publicPath: './',
+          outputPath: 'img/'
+        }
       },
       {
         test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        loader: 'file-loader?name=/fonts/[name].[ext]'
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          publicPath: './',
+          outputPath: 'fonts/'
+        }
       }
     ]
   },
   devServer: {
     contentBase: path.join(root, "dist"),
     compress: true,
+    // hot: true,
     port: 9000,
     host: '0.0.0.0',
     stats: "errors-only",
@@ -123,5 +136,11 @@ module.exports = {
       //    filename: "[name].[contenthash].css"
       //     disable: process.env.NODE_ENV === "development"
     })
+
+    //HOT MODULE REPLACEMENT
+    //enable HMR globally
+    // new webpack.HotModuleReplacementPlugin(),
+    //print more readable module name in the browser console on HMR update
+    // new webpack.NameModulesPlugin()
   ]
 };
