@@ -73,20 +73,32 @@ module.exports = {
       },
 
       /***************
-      ###   FONTS AND IMAGES LOADER
+      ###   IMAGES & FONTS LOADER
       ***********/
       {
-        test: /\.(png|jpe?g|gif|ico)$/,
+        test: /\.(png|jpe?g|gif|ico|svg)$/,
         loader: 'file-loader',
+        exclude: [/fonts/],
         options: {
           name: '[name].[hash].[ext]',
           publicPath: './',
           outputPath: 'img/'
         }
       },
+      // {
+      //   test: /\.(svg)$/,
+      //   loader: 'file-loader',
+      //   exclude: [/images/],
+      //   options: {
+      //     name: '[path][name].[ext]',
+      //     publicPath: './'
+      //     // outputPath: 'fonts/'
+      //   }
+      // },
       {
         test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
         loader: 'file-loader',
+        exclude: [/img/],
         options: {
           name: '[name].[ext]',
           publicPath: './',
@@ -132,7 +144,7 @@ module.exports = {
     // }),
 
 
-    //CSS
+    //CSS - extract to separate file
     new ExtractTextPlugin({
       filename: "[name].css",
       disable: !isProd,                  //run only on production

@@ -1,3 +1,8 @@
 node_modules
 npm-debug.log
+
+# Add dist folder - just for testing
 !dist
+
+# Ignore chunks from HMR - temporarly solution
+dist/hot/
