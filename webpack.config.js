@@ -77,28 +77,37 @@ module.exports = {
       ***********/
       {
         test: /\.(png|jpe?g|gif|ico|svg)$/,
-        loader: 'file-loader',
-        exclude: [/fonts/],
-        options: {
-          name: '[name].[hash].[ext]',
-          publicPath: './',
-          outputPath: 'img/'
-        }
+        exclude: [/fonts/],             //dont test svg from fonts
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[hash:11].[ext]',
+            publicPath: './',
+            outputPath: 'img/'
+          }
+        }, {
+          loader: 'image-webpack-loader',
+          query: {
+            mozjpeg: {
+              progressive: true,
+            },
+            gifsicle: {
+              interlaced: false,
+            },
+            optipng: {
+              optimizationLevel: 7,
+            },
+            pngquant: {
+              quality: '65-90',
+              speed: 4,
+            }
+          }
+        }]
       },
-      // {
-      //   test: /\.(svg)$/,
-      //   loader: 'file-loader',
-      //   exclude: [/images/],
-      //   options: {
-      //     name: '[path][name].[ext]',
-      //     publicPath: './'
-      //     // outputPath: 'fonts/'
-      //   }
-      // },
       {
         test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        exclude: [/img/],             //dont test svg from images
         loader: 'file-loader',
-        exclude: [/img/],
         options: {
           name: '[name].[ext]',
           publicPath: './',

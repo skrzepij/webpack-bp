@@ -2,9 +2,14 @@ const libs = require("../scss/libs.scss");
 const css = require("../scss/style.scss");
 
 
+var jQuery = require("jquery");
+var $ = jQuery;
+window.jQuery = require('jquery');
+
+var bootstrap = require("bootstrap-sass/assets/javascripts/bootstrap.js");
+
 var content = require("./content.js");
 content();
-
 
 
 //TURN OFF REACT FOR NOW
