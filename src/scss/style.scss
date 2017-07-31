@@ -3,10 +3,10 @@
 
 
 //BASE
-@import "base/fonts";
-@import "base/vars";
-@import "base/mixins";
-@import "base/base";
+@import 'base/fonts';
+@import 'base/vars';
+@import 'base/mixins';
+@import 'base/base';
 
 
 //LAYOUT - divides a page into sections with elements like header, footer, and article.
@@ -19,8 +19,8 @@
 
 
 body {
-  background-color: lightgreen;
-  background-image: url('../img/smile.svg');
+  background-color: lightblue;
+  // background-image: url('../img/smile.svg');
   background-size: cover;
 }
 
@@ -30,5 +30,6 @@ body {
 
   input {
     appearance: none;
+    display: flex;
   }
 }

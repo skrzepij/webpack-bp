@@ -6,3 +6,6 @@ npm-debug.log
 
 # Ignore chunks from HMR - temporarly solution
 dist/hot/
+
+# Images in dist folder (hash change)
+dist/img/

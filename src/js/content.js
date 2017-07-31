@@ -1,3 +1,3 @@
 module.exports = function() {
-  document.write("It works from content.js.");
+  document.write('It works from content.js.');
 };

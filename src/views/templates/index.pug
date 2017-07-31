@@ -16,8 +16,8 @@ block append content
   h1(class="header-h1" data-attr="tested data").
     Pug - node template engine 
     #[i(class="fa fa-address-book" aria-hidden="true")]
-    #[img(src=require("../../img/smile.svg"))]
-  .cointainer
+    #[img(src=require("../../img/smile.svg") style="width: 250px;")]
+  .container
     .row
       - var cols = 0;
       while cols < 4
@@ -26,6 +26,11 @@ block append content
             Przykładowa kolumna #{ cols + 1 }
         - cols++;
       
+  .container
+    form
+      .form-group
+        input(placeholder="test" type="number").form-control
+
   #container.col
     //- include values from external JSON
     - var values = (require('../../data/example.json'));
@@ -35,6 +40,7 @@ block append content
         
     //--- END of including data;
     
+    
     p.
       Get ON!
       
@@ -43,10 +49,9 @@ block append content
 
 
   
-      <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-      Launch demo modal
-    </button>
+    <!-- Button trigger modal -->
+    button.btn.btn-warning.btn-lg(type="button" data-toggle="modal" data-target="#myModal").
+      Odpal modal
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

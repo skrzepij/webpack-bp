@@ -1,19 +1,19 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var webpack = require('webpack');
-var path = require('path');
-var root = __dirname;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const root = __dirname;
 
-var isProd = process.argv.indexOf('-p') !== -1; //true or false
+const isProd = process.argv.indexOf('-p') !== -1; //true or false
 
-var cssDev = ['style-loader', 'css-loader', 'sass-loader'];
-var cssProd = ExtractTextPlugin.extract({
-  fallback: "style-loader",       // put inline CSS into html file
+const cssDev = ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'];
+const cssProd = ExtractTextPlugin.extract({
+  fallback: 'style-loader',       // put inline CSS into html file
   use: [{
     loader: 'css-loader',         // translates CSS into CommonJS
     options: {
       importLoaders: 1
-      // minimize: true,          // just run with -p to minify;
+      // minimize: true,          // just run webpack with -p to minify;
     }
   },
   {
@@ -22,21 +22,21 @@ var cssProd = ExtractTextPlugin.extract({
   {
     loader: 'sass-loader'        // compiles Sass to CSS
   }],
-  publicPath: "/dist"
+  publicPath: '/dist'
 });
-var cssConfig = isProd ? cssProd : cssDev;
+const cssConfig = isProd ? cssProd : cssDev;
 
 
 
 module.exports = {
   context: root,
   entry: {
-    app: "./src/js/entry.js",
-    contact: "./src/js/contact.js"
+    app: './src/js/entry.js',
+    contact: './src/js/contact.js'
   },
   output: {
-    path: path.join(root, "dist"),
-    filename: "[name].bundle.js",
+    path: path.join(root, 'dist'),
+    filename: '[name].bundle.js',
     hotUpdateChunkFilename: 'hot/hot-update.js',
     hotUpdateMainFilename: 'hot/hot-update.json'
   },
@@ -117,12 +117,12 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: path.join(root, "dist"),
+    contentBase: path.join(root, 'dist'),
     compress: true,
     // hot: true,
     port: 9000,
     host: '0.0.0.0',
-    stats: "errors-only",
+    stats: 'errors-only',
     disableHostCheck: true
     //open: true            only in local env (with browser)
   },
@@ -155,7 +155,7 @@ module.exports = {
 
     //CSS - extract to separate file
     new ExtractTextPlugin({
-      filename: "[name].css",
+      filename: '[name].css',
       disable: !isProd,                  //run only on production
       allChunks: true
       //    filename: "[name].[contenthash].css"
