@@ -1,5 +1,10 @@
 # README #
 
+This boilerplate is still quite messy. But its because of need to test every functionality. 
+Let's say this is Beta version. 
+
+But we are at the end, so we will clean project files in nearest feature. 
+
 
 ## How to run ##
 
