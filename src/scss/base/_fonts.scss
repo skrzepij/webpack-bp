@@ -1,4 +1,6 @@
-/* FONTS */
+/*******
+##### FONTS
+**************/
 
 @mixin font-face($name, $folder) {
     $filepath: "/src/fonts/" + $name + "/" + $folder + "/" + $name + '-' + $folder;
