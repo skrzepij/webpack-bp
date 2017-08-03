@@ -1,0 +1,18 @@
+{
+  "jeden": {
+    "name": "Xbox One",
+    "desc": "Nowy Xbox z ultra-mocnym procesorem, technologią Kinect i dyskiem twardym 500 GB zabierze Cię do świata gier i rozrywki najnowszej generacji!"
+    },
+  "2": {
+    "name":  "Rower Górski",
+    "desc": "Rusz na podbój leśnych ścieżek na kołach 27,5”! Osprzęt Shimano (21 biegów) pozwoli sprawnie rozpędzać się w każdym terenie, a amortyzator zapewni komfort jazdy. Rama roweru w rozmiarze 19”."
+    },
+  "3": {
+    "name": "Dron Parrot",
+    "desc": "Steruj superlekkim dronem za pomocą smartfona i nagrywaj filmy HD! Wbudowane akcelerometr, żyroskop, magnetometr i czujnik ciśnienia zapewnią precyzyjny lot!"
+    },
+  "4": {
+    "name": "Lego Mindstorms EV3",
+    "desc": "Zbuduj własnego robota Lego! Programowalna kostka, mocny procesor i system oparty o Linux otwierają zupełnie nowe możliwości!"
+    }
+}

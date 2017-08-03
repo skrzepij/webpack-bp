@@ -1,0 +1,35 @@
+// @import "vendors/bootstrap";
+// @import "libs/_bootstrap.scss";
+
+
+//BASE
+@import 'base/fonts';
+@import 'base/vars';
+@import 'base/mixins';
+@import 'base/base';
+
+
+//LAYOUT - divides a page into sections with elements like header, footer, and article.
+
+
+//MODULES - reusable, modular element in the design
+
+
+//TEMPLATE
+
+
+body {
+  background-color: lightblue;
+  // background-image: url('../img/smile.svg');
+  background-size: cover;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+
+  input {
+    appearance: none;
+    display: flex;
+  }
+}

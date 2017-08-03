@@ -1,0 +1,48 @@
+/*******
+##### BASE
+**************/
+
+html {
+  font-size: 14px;
+
+  @media screen and ( min-width: 540px ) {
+    font-size: 15px;
+  }
+
+  @media screen and ( min-width: 991px ) {
+    font-size: 17px;
+  }
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+
+  font-weight: $normal;
+  font-size: 1rem;
+
+  color: $black;
+
+  &.cookiePopup {
+
+  }
+}
+
+
+h1, h2, h3, h4, h5 {
+  font-weight: $bold;
+}
+
+h1 {
+
+}
+
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.main {
+
+}

@@ -1,79 +1,173 @@
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var root = __dirname;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const root = __dirname;
+
+const isProd = process.argv.indexOf('-p') !== -1; //true or false
+
+const cssDev = ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'];
+const cssProd = ExtractTextPlugin.extract({
+  fallback: 'style-loader',       // put inline CSS into html file
+  use: [{
+    loader: 'css-loader',         // translates CSS into CommonJS
+    options: {
+      importLoaders: 1
+      // minimize: true,          // just run webpack with -p to minify;
+    }
+  },
+  {
+    loader: 'postcss-loader'      // manipulate CSS (e.g. autoprefixer) postcss.config.js
+  },
+  {
+    loader: 'sass-loader'        // compiles Sass to CSS
+  }],
+  publicPath: '/dist'
+});
+const cssConfig = isProd ? cssProd : cssDev;
+
+
 
 module.exports = {
-  entry: "./src/index.tsx", //"./entry.js",
+  context: root,
+  entry: {
+    app: './src/js/entry.js',
+    contact: './src/js/contact.js'
+  },
   output: {
-      path: root + "/dist", //'/build',
-      filename: "bundle.js"
+    path: path.join(root, 'dist'),
+    filename: '[name].bundle.js',
+    hotUpdateChunkFilename: 'hot/hot-update.js',
+    hotUpdateMainFilename: 'hot/hot-update.json'
   },
-
-  // Enable sourcemaps for debugging webpack's output.
-  devtool: "source-map",
-
-  resolve: {
-      // Add '.ts' and '.tsx' as resolvable extensions.
-      extensions: [".ts", ".tsx", ".js", ".json"]
-  },
-
   module: {
     rules: [
+      /***************
+      ###   SASS / CSS LOADERS
+      ***********/
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          //resolve-url-loader may be chained before sass-loader if necessary
-          use: ['css-loader', 'sass-loader']
-        })
+        use: cssConfig
       },
-      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+
+      /***************
+      ###   JS LOADER
+      ***********/
       {
-        test: /\.tsx?$/, loader: "awesome-typescript-loader"
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
       },
-      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+
+      /***************
+      ###   PUG LOADER
+      ***********/
       {
-        enforce: "pre", test: /\.js$/, loader: "source-map-loader"
+        test: /\.pug$/,
+        use: [{
+          loader: 'pug-loader',
+          options: {
+            pretty: true
+          }
+        }]
+      },
+
+      /***************
+      ###   IMAGES & FONTS LOADER
+      ***********/
+      {
+        test: /\.(png|jpe?g|gif|ico|svg)$/,
+        exclude: [/fonts/],             //dont test svg from fonts
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[hash:11].[ext]',
+            publicPath: './',
+            outputPath: 'img/'
+          }
+        }, {
+          loader: 'image-webpack-loader',
+          query: {
+            mozjpeg: {
+              progressive: true,
+            },
+            gifsicle: {
+              interlaced: false,
+            },
+            optipng: {
+              optimizationLevel: 7,
+            },
+            pngquant: {
+              quality: '65-90',
+              speed: 4,
+            }
+          }
+        }]
+      },
+      {
+        test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        exclude: [/img/],             //dont test svg from images
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          publicPath: './',
+          outputPath: 'fonts/'
+        }
       }
     ]
   },
-  // When importing a module whose path matches one of the following, just
-  // assume a corresponding global variable exists and use that instead.
-  // This is important because it allows us to avoid bundling all of our
-  // dependencies, which allows browsers to cache those libraries between builds.
-  externals: {
-      "react": "React",
-      "react-dom": "ReactDOM"
+  devServer: {
+    contentBase: path.join(root, 'dist'),
+    compress: true,
+    // hot: true,
+    port: 9000,
+    host: '0.0.0.0',
+    stats: 'errors-only',
+    disableHostCheck: true
+    //open: true            only in local env (with browser)
   },
   plugins: [
-    new ExtractTextPlugin("styles.css"),
+    ///HTML
+    new HtmlWebpackPlugin({
+      title: 'Webpack Sandbox v1',
+      hash: true,
+      excludeChunks: ['contact'],
+      template: './src/views/templates/index.pug',
+      favicon: './src/favicon.png'
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Webpack Page1',
+      hash: true,
+      excludeChunks: ['contact'],
+      template: './src/views/templates/page1.pug',
+      filename: 'page1.html',
+      favicon: './src/favicon.png'
+    }),
+    // new HtmlWebpackPlugin({
+    //   title: 'Webpack Contact',
+    //   hash: true,
+    //   chunks: ['contact'],
+    //   filename: 'contact.html',
+    //   template: './src/contact.html',
+    //   favicon: './src/favicon.png'
+    // }),
+
+
+    //CSS - extract to separate file
+    new ExtractTextPlugin({
+      filename: '[name].css',
+      disable: !isProd,                  //run only on production
+      allChunks: true
+      //    filename: "[name].[contenthash].css"
+      //     disable: process.env.NODE_ENV === "development"
+    }),
+
+    //HOT MODULE REPLACEMENT
+    //enable HMR globally
+    new webpack.HotModuleReplacementPlugin({
+      //options
+    }),
+    //print more readable module name in the browser console on HMR update
+    new webpack.NamedModulesPlugin()
   ]
 };
-
-
-// const path = require('path');
-// const webpack = require('webpack');
-// const ExtractTextPlugin = require("extract-text-webpack-plugin");
-// const extractSass = new ExtractTextPlugin({
-//     filename: "[name].[contenthash].css",
-//     disable: process.env.NODE_ENV === "development"
-// });
-//
-// module.exports = {
-//     module: {
-//         rules: [{
-//             test: /\.scss$/,
-//             use: extractSass.extract({
-//                 use: [{
-//                     loader: "css-loader" // translates CSS into CommonJS
-//                 }, {
-//                     loader: "sass-loader" // compiles Sass to CSS
-//                 }],
-//                 // use style-loader in development
-//                 fallback: "style-loader"
-//             })
-//         }]
-//     },
-//     plugins: [
-//         extractSass
-//     ]
-// };

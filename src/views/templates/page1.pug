@@ -1,0 +1,38 @@
+//- Page index.pug
+extends ../layout
+
+block vars
+  - var title = "Strona główna"
+  - var pageTitle = "Page 1"
+  - var pageDesc = "Opis strony głównej"
+
+block append header
+  -locals.path= pageTitle;
+  include ../includes/header
+
+
+
+block append content
+  h1(class="header-h1" data-attr="tested data").
+    Pug - node template engine
+  .cointainer
+    .row
+      - var cols = 0;
+      while cols < 4
+        .col-sm-3
+          p.
+            Przykładowa kolumna #{ cols + 1 }
+        - cols++;
+      
+  #container.col
+    //- include values from external JSON
+    - var values = (require('../../data/example.json'));
+    ul
+      each val, key in values
+        li= values[key].name
+    //--- END of including data;
+    
+    p.
+      Get ON!
+      
+block footer
