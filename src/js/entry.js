@@ -2,16 +2,13 @@
 
 const libs = require('../scss/libs.scss');
 const css = require('../scss/style.scss');
-const jQuery = require('jquery');
-
-const $ = jQuery;
-window.jQuery = require('jquery');
 
 const bootstrap = require('bootstrap-sass/assets/javascripts/bootstrap.js');
 
 const content = require('./content.js');
 
 console.warn('this is only a test message'); 
+
 
 content();
 

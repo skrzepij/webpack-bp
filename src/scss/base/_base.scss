@@ -24,11 +24,21 @@ body {
 
   color: $black;
 
+
+  background-color: lightblue;
+  // background-image: url('../img/smile.svg');
+  // background-size: cover;
+
   &.cookiePopup {
 
   }
 }
 
+
+
+
+// HEADINGS
+////////////
 
 h1, h2, h3, h4, h5 {
   font-weight: $bold;
@@ -38,11 +48,17 @@ h1 {
 
 }
 
+// LINKS
+////////////
+
 a, a:hover, a:focus, a:active {
   text-decoration: none;
   color: inherit;
 }
 
+body {
+  @include noway-regular;
+}
 .main {
 
 }

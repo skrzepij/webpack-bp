@@ -28,5 +28,9 @@ module.exports = {
             allow: ["warn", "error"]
           }
         ]
+    },
+    "globals": {
+      "$": true,
+      "_": true
     }
 };

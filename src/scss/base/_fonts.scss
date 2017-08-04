@@ -2,10 +2,10 @@
 ##### FONTS
 **************/
 
-@mixin font-face($name, $folder) {
-    $filepath: "/src/fonts/" + $name + "/" + $folder + "/" + $name + '-' + $folder;
+@mixin font-face($name, $type) {
+    $filepath: "../fonts/" + $name + "/" + $type + "/" + $name + '-' + $type;
     @font-face {
-        font-family: $name + '-' + $folder;
+        font-family: $name + '-' + $type;
         src: url($filepath + ".eot");
         src: url($filepath + ".eot?#iefix") format('embedded-opentype'),
             url($filepath + ".woff") format('woff'),
@@ -14,37 +14,22 @@
     }
 }
 
-@include font-face('HelveticaNeue', 'Lt');
-@include font-face('HelveticaNeue', 'Roman');
-@include font-face('HelveticaNeue', 'Bd');
 
-@include font-face('GothamCondensed', 'Ultra');
-@include font-face('GothamCondensed', 'Black');
-@include font-face('GothamCondensed', 'Bold');
-@include font-face('GothamCondensed', 'Medium');
-@include font-face('GothamCondensed', 'Book');
-@include font-face('GothamCondensed', 'Light');
-@include font-face('GothamCondensed', 'Thin');
+@include font-face('Noway', 'Regular');
+@include font-face('Noway', 'Italic');
 
 
-@mixin font-lt {
-  font-family: 'HelveticaNeue-Lt', "Helvetica Neue", Helvetica, sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
-
-@mixin font-roman {
-  font-family: 'HelveticaNeue-Roman', "Helvetica Neue", Helvetica, sans-serif;
+@mixin noway-regular {
+  font-family: 'Noway-Regular' sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-@mixin font-bd {
-  font-family: 'HelveticaNeue-Bd', "Helvetica Neue", Helvetica, sans-serif;
-  font-weight: 500;
-  font-style: normal;
+@mixin noway-italic {
+  font-family: 'Noway-Regular' sans-serif;
+  font-weight: 400;
+  font-style: italic;
 }
-
 
 @mixin font-italic {
   font-style: italic;

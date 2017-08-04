@@ -162,6 +162,14 @@ module.exports = {
       //     disable: process.env.NODE_ENV === "development"
     }),
 
+    //Load modules instead of import them
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      _: 'lodash'
+    }),
+
     //HOT MODULE REPLACEMENT
     //enable HMR globally
     new webpack.HotModuleReplacementPlugin({
