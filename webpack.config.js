@@ -31,7 +31,7 @@ const cssConfig = isProd ? cssProd : cssDev;
 module.exports = {
   context: root,
   entry: {
-    app: './src/ts/entry.ts',
+    app: './src/ts/entry.ts',         //If want to use ES6, change this path to ./src/js/entry.js
     contact: './src/js/contact.js'
   },
   resolve: {

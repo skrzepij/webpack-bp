@@ -13,9 +13,10 @@ List of the technlogies used and tested in this boilerplate:
 1. SASS
 2. PUG
 3. ES6
-4. jQuery
-5. Bootstrap
-6. Font-awesome
+4. TypeScript
+5. jQuery
+6. Bootstrap
+7. Font-awesome
 
 
 ## How it's working? ##
@@ -50,16 +51,13 @@ As mentioned before, all these scripts are available in the `package.json` file
 
 
 
-### Branches ###
+### Workflow ###
 
-* Master - Basic config 
+As default, you should write in TypeScript. 
+Main file is `entry.ts` located in `/src/ts/` path.
+You can import other TypeScript or pure JS files into this main file.
 
-PUG + SASS + JS
-
-(issue with importing sass files)
-
-
-
-* Typescript - TS config
-
-PUG + SASS + TypeScript
+But if you preffer to use only ES6 from begginig, you can change this easily:
+* Open file `webpack.config.js`
+* Find object `entry` 
+* You can change main (`entry.ts`) file to `./src/js/entry.js` or add new one and provide propper path.
