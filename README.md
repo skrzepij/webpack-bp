@@ -50,12 +50,14 @@ As mentioned before, all these scripts are available in the `package.json` file
 
 
 
-
 ### Workflow ###
 
 As default, you should write in TypeScript. 
+
 Main file is `entry.ts` located in `/src/ts/` path.
+
 You can import other TypeScript or pure JS files into this main file.
+
 
 But if you preffer to use only ES6 from begginig, you can change this easily:
 * Open file `webpack.config.js`

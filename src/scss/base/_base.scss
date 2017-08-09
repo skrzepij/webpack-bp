@@ -15,17 +15,16 @@ html {
 }
 
 body {
-  -webkit-font-smoothing: antialiased;
+  @include noway-regular;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: #add8e6;
+  color: $black;
+  font-size: 1rem;
+  font-weight: $normal;
+
   overflow-x: hidden;
 
-  font-weight: $normal;
-  font-size: 1rem;
-
-  color: $black;
-
-
-  background-color: lightblue;
   // background-image: url('../img/smile.svg');
   // background-size: cover;
 
@@ -35,12 +34,14 @@ body {
 }
 
 
-
-
 // HEADINGS
 ////////////
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-weight: $bold;
 }
 
@@ -51,14 +52,14 @@ h1 {
 // LINKS
 ////////////
 
-a, a:hover, a:focus, a:active {
-  text-decoration: none;
+a,
+a:hover,
+a:focus,
+a:active {
   color: inherit;
+  text-decoration: none;
 }
 
-body {
-  @include noway-regular;
-}
 .main {
 
 }
