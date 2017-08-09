@@ -33,17 +33,15 @@ If you will have to create new files, just put them all into `src` folder ( and 
 1. Clone repo
 2. Run these commends in terminal:
     1. `npm install`
-    2. `npm run dev`      
-    3. `npm run serv`
-    4. `npm run prod`
+    2. `npm run prod`
 
 
 There are other npm scripts available in `package.json`:
 ```
-npm run dev            ## To get developers version ( no minimalizing CSS )
-npm run serv           ## For working with server build ( live reload with HMR )
-npm run clean          ## Just clean 'prod' folder
-npm run prod           ## To get the producion version, fully optimized
+npm run dev            ## To get developers version ( no external CSS, watch on src files etc. )
+npm run serv           ## For working with server build ( live reload HTML, CSS and JS )
+npm run clean          ## Clean 'prod' folder
+npm run prod           ## To get the producion version, fully optimized and minified
 ```
 
 As mentioned before, all these scripts are available in the `package.json` file
