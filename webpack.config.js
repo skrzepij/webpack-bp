@@ -6,14 +6,19 @@ const root = __dirname;
 
 const isProd = process.argv.indexOf('-p') !== -1; //true or false
 
+
+//Dynamic CSS config
+/////////
 const cssDev = ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'];
 const cssProd = ExtractTextPlugin.extract({
   fallback: 'style-loader',       // put inline CSS into html file
   use: [{
     loader: 'css-loader',         // translates CSS into CommonJS
     options: {
-      importLoaders: 1
-      // minimize: true,          // just run webpack with -p to minify;
+      importLoaders: 1,
+      minimize: {  
+        discardComments: { removeAll: true } // this comes from CSSNano
+      }
     }
   },
   {
@@ -25,7 +30,7 @@ const cssProd = ExtractTextPlugin.extract({
   publicPath: '/dist'
 });
 const cssConfig = isProd ? cssProd : cssDev;
-
+////////////
 
 
 module.exports = {
@@ -173,6 +178,14 @@ module.exports = {
       //     disable: process.env.NODE_ENV === "development"
     }),
 
+    //JS UGLIFY on production - remove comments
+    isProd && 
+      new webpack.optimize.UglifyJsPlugin({
+        output: {
+          comments: false
+        }
+      }),
+
     //Load modules instead of import them
     new webpack.ProvidePlugin({
       $: 'jquery',
@@ -187,6 +200,7 @@ module.exports = {
       //options
     }),
     //print more readable module name in the browser console on HMR update
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+
   ]
 };
