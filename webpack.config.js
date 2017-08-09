@@ -31,8 +31,11 @@ const cssConfig = isProd ? cssProd : cssDev;
 module.exports = {
   context: root,
   entry: {
-    app: './src/js/entry.js',
+    app: './src/ts/entry.ts',         //If want to use ES6, change this path to ./src/js/entry.js
     contact: './src/js/contact.js'
+  },
+  resolve: {
+    extensions: [' ', '.webpack.js', '.web.js', '.tsx', '.ts', '.js']
   },
   output: {
     path: path.join(root, 'dist'),
@@ -57,6 +60,14 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: 'babel-loader'
+      },
+
+      /***************
+      ###   TYPESCRIPT LOADER
+      ***********/
+      { 
+        test: /\.tsx?$/,
+        use: 'ts-loader'
       },
 
       /***************
