@@ -6,9 +6,10 @@ const root = __dirname;
 
 const isProd = process.argv.indexOf('-p') !== -1; //true or false
 
-
-//Dynamic CSS config
-/////////
+/**
+ * CSS config
+ * Dynamic, dependent of build type
+ */
 const cssDev = ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'];
 const cssProd = ExtractTextPlugin.extract({
   fallback: 'style-loader',       // put inline CSS into html file
@@ -30,9 +31,85 @@ const cssProd = ExtractTextPlugin.extract({
   publicPath: '/dist'
 });
 const cssConfig = isProd ? cssProd : cssDev;
-////////////
+
+/**
+ * Plugins list definition
+ * 
+ * It's possible to add plugin only for specific build type
+ * (prod / dev)
+ */
+const pluginsList = [
+  /**
+   * HTML / PUG
+   * Each separated page need to be defined here
+   *
+   * @param {Array} chunks - include necessary JS files
+   * @param {Array} excludeChunks - remove unnecessary JS files
+   * @param {string} template - use specific template source
+   */
+  new HtmlWebpackPlugin({
+    title: 'Webpack Sandbox v1',
+    hash: true,
+    excludeChunks: ['contact'],
+    template: './src/views/templates/index.pug',
+    favicon: './src/favicon.png'
+  }),
+  new HtmlWebpackPlugin({
+    title: 'Webpack Page1',
+    hash: true,
+    excludeChunks: ['contact'],
+    template: './src/views/templates/page1.pug',
+    filename: 'page1.html',
+    favicon: './src/favicon.png'
+  }),
 
 
+  //CSS - extract to separate file
+  new ExtractTextPlugin({
+    filename: '[name].css',
+    disable: !isProd,                  //run only on production
+    allChunks: true
+    //    filename: "[name].[contenthash].css"
+  }),
+
+  //Define global modules instead of import them
+  new webpack.ProvidePlugin({
+    $: 'jquery',
+    jQuery: 'jquery',
+    'window.jQuery': 'jquery',
+    _: 'lodash'
+  }),
+
+  //HOT MODULE REPLACEMENT
+  //enable HMR globally
+  new webpack.HotModuleReplacementPlugin({
+    //options
+  }),
+  //print more readable module name in the browser console on HMR update
+  new webpack.NamedModulesPlugin(),
+];
+
+
+/**
+ * Add plugins 
+ * only for production build
+ */
+if (isProd) {
+  pluginsList.push(
+    //JS UGLIFY on production - remove comments
+    new webpack.optimize.UglifyJsPlugin({
+      output: {
+        comments: false
+      }
+    })
+  );
+}
+
+
+
+/**
+ * MAIN OBJECT
+ */
 module.exports = {
   context: root,
   entry: {
@@ -51,7 +128,7 @@ module.exports = {
   module: {
     rules: [
       /***************
-      ###   SASS / CSS LOADERS
+      ***   SASS / CSS LOADERS
       ***********/
       {
         test: /\.scss$/,
@@ -59,7 +136,7 @@ module.exports = {
       },
 
       /***************
-      ###   JS LOADER
+      ***   JS LOADER
       ***********/
       {
         test: /\.js$/,
@@ -68,7 +145,7 @@ module.exports = {
       },
 
       /***************
-      ###   TYPESCRIPT LOADER
+      ***   TYPESCRIPT LOADER
       ***********/
       { 
         test: /\.tsx?$/,
@@ -76,7 +153,7 @@ module.exports = {
       },
 
       /***************
-      ###   PUG LOADER
+      ***   PUG LOADER
       ***********/
       {
         test: /\.pug$/,
@@ -89,7 +166,7 @@ module.exports = {
       },
 
       /***************
-      ###   IMAGES & FONTS LOADER
+      ***   IMAGES
       ***********/
       {
         test: /\.(png|jpe?g|gif|ico|svg)$/,
@@ -120,6 +197,9 @@ module.exports = {
           }
         }]
       },
+      /***************
+      ***   FONTS LOADER
+      ***********/
       {
         test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
         exclude: [/img/],             //dont test svg from images
@@ -135,72 +215,12 @@ module.exports = {
   devServer: {
     contentBase: path.join(root, 'dist'),
     compress: true,
-    // hot: true,
+    // hot: true,         //HMR disabled because it's not working with JS right now. 
     port: 9000,
     host: '0.0.0.0',
     stats: 'errors-only',
     disableHostCheck: true
-    //open: true            only in local env (with browser)
+    //open: true            //only in local env (with browser)
   },
-  plugins: [
-    ///HTML
-    new HtmlWebpackPlugin({
-      title: 'Webpack Sandbox v1',
-      hash: true,
-      excludeChunks: ['contact'],
-      template: './src/views/templates/index.pug',
-      favicon: './src/favicon.png'
-    }),
-    new HtmlWebpackPlugin({
-      title: 'Webpack Page1',
-      hash: true,
-      excludeChunks: ['contact'],
-      template: './src/views/templates/page1.pug',
-      filename: 'page1.html',
-      favicon: './src/favicon.png'
-    }),
-    // new HtmlWebpackPlugin({
-    //   title: 'Webpack Contact',
-    //   hash: true,
-    //   chunks: ['contact'],
-    //   filename: 'contact.html',
-    //   template: './src/contact.html',
-    //   favicon: './src/favicon.png'
-    // }),
-
-
-    //CSS - extract to separate file
-    new ExtractTextPlugin({
-      filename: '[name].css',
-      disable: !isProd,                  //run only on production
-      allChunks: true
-      //    filename: "[name].[contenthash].css"
-      //     disable: process.env.NODE_ENV === "development"
-    }),
-
-    //JS UGLIFY on production - remove comments
-    isProd && 
-      new webpack.optimize.UglifyJsPlugin({
-        output: {
-          comments: false
-        }
-      }),
-
-    //Load modules instead of import them
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
-      _: 'lodash'
-    }),
-
-    //HOT MODULE REPLACEMENT
-    //enable HMR globally
-    new webpack.HotModuleReplacementPlugin({
-      //options
-    }),
-    //print more readable module name in the browser console on HMR update
-    new webpack.NamedModulesPlugin(),
-
-  ]
+  plugins: pluginsList
 };
