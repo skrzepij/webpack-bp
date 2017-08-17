@@ -3,6 +3,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
 const root = __dirname;
+const glob = require('glob');
+const PurifyCSSPlugin = require('purifycss-webpack');
 
 const isProd = process.argv.indexOf('-p') !== -1; //true or false
 
@@ -101,6 +103,10 @@ if (isProd) {
       output: {
         comments: false
       }
+    }),
+    new PurifyCSSPlugin({
+      // Give paths to parse for rules. These should be absolute!
+      paths: glob.sync(path.join(root, 'src/views/**/*.pug')),
     })
   );
 }

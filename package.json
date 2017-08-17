@@ -36,6 +36,8 @@
     "postcss-loader": "^2.0.5",
     "pug": "^2.0.0-rc.1",
     "pug-loader": "https://github.com/pugjs/pug-loader",
+    "purify-css": "^1.2.5",
+    "purifycss-webpack": "^0.7.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.18.2",
     "ts-loader": "^2.3.2",
