@@ -5,6 +5,7 @@ import '../scss/style.scss';
 import 'bootstrap-sass/assets/javascripts/bootstrap.js';
 
 import content = require('../js/content.js');
+import './entry.tsx';
 
 console.warn('this is only a test message'); 
 
